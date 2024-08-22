@@ -1,20 +1,23 @@
 using UnityEngine;
 
-public class StateBase
+namespace Core.StateMachine
 {
-    public virtual void OnStateEnter(object o = null)
+    public class StateBase
     {
-        Debug.Log("OnStateEnter");
-    }
+        public virtual void OnStateEnter(object o = null)
+        {
+            Debug.Log("OnStateEnter");
+        }
 
-    public virtual void OnStateStay()
-    {
-        Debug.Log("OnStateStay");
-    }
+        public virtual void OnStateStay()
+        {
+            Debug.Log("OnStateStay");
+        }
 
-    public virtual void OnStateExit()
-    {
-        Debug.Log(nameof(OnStateExit));
+        public virtual void OnStateExit()
+        {
+            Debug.Log(nameof(OnStateExit));
+        }
     }
 }
 
