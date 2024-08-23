@@ -14,8 +14,12 @@ public class Player : MonoBehaviour
 
     public Animator animator;
 
+    [Header("Run Setup")]
+    public float speedRun = 1.5f;
+
     [Header("Atalhos")]
     public KeyCode jumpKeyCode = KeyCode.Space;
+    public KeyCode runKeyCode = KeyCode.LeftShift;
 
     private float _vSpeed = 0f;
 
@@ -37,6 +41,19 @@ public class Player : MonoBehaviour
         _vSpeed -= gravity * Time.deltaTime;
         speedVector.y = _vSpeed;
 
+        var isWalking = inputAxisVertical != 0;
+        if (isWalking)
+        {
+            if (Input.GetKey(runKeyCode))
+            {
+                speedVector *= speedRun;
+                animator.speed = speedRun;
+            }
+
+            else
+                animator.speed = 1f;
+        }
+
         characterController.Move(speedVector * Time.deltaTime);
 
         animator.SetBool("Run", inputAxisVertical != 0);
@@ -44,3 +61,6 @@ public class Player : MonoBehaviour
         
     }
 }
+
+
+
