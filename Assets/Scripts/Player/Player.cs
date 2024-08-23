@@ -8,10 +8,14 @@ public class Player : MonoBehaviour
     public CharacterController characterController;
     public float speed = 1f;
     public float turnSpeed = 1f;
-    public float gravity = -9.8f;
+    public float gravity = 9.8f;
+    public float jumpSpeed = 15f;
 
-    [Header("Animator")]
+
     public Animator animator;
+
+    [Header("Atalhos")]
+    public KeyCode jumpKeyCode = KeyCode.Space;
 
     private float _vSpeed = 0f;
 
@@ -23,7 +27,14 @@ public class Player : MonoBehaviour
         var inputAxisVertical = Input.GetAxis("Vertical");
         var speedVector = transform.forward * inputAxisVertical * speed;
 
-        _vSpeed = gravity * Time.deltaTime;
+        if (characterController.isGrounded)
+        {
+            _vSpeed = 0;
+            if (Input.GetKeyDown(jumpKeyCode))
+                _vSpeed = jumpSpeed;
+        }
+
+        _vSpeed -= gravity * Time.deltaTime;
         speedVector.y = _vSpeed;
 
         characterController.Move(speedVector * Time.deltaTime);
