@@ -7,22 +7,19 @@ public class GunBase : MonoBehaviour
     public ProjectileBase prefabProjectile;
 
     public Transform positionToShoot;
-    public float timeBeteenShoot = .2f;
+    public float timeBetweenShoot = .2f;
 
     public KeyCode shootKeyCode = KeyCode.Q;
 
     private Coroutine _currentCoroutine;
 
-    
 
-   
-
-    IEnumerator ShootCoroutine()
+    protected virtual IEnumerator ShootCoroutine()
     {
         while (true)
         {
             Shoot();
-            yield return new WaitForSeconds(timeBeteenShoot);
+            yield return new WaitForSeconds(timeBetweenShoot);
         }
     }
 
