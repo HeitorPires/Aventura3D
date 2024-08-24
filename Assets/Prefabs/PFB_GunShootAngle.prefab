@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8900373983897146058}
   - component: {fileID: 7712468598323656343}
   m_Layer: 0
-  m_Name: PFB_GunAngle
+  m_Name: PFB_GunShootAngle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,8 +59,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8448527282004272331}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 411.2, y: -6.71, z: 50.6}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -155,6 +155,7 @@ MonoBehaviour:
   timeBetweenShoot: 0.2
   speed: 50
   shootKeyCode: 113
+  uIGunUpdaters: []
   maxShoot: 5
   timeToRecharge: 1
   amountPerShoot: 4

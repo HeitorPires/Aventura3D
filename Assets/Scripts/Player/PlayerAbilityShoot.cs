@@ -7,8 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerAbilityShoot : PlayerAbilityBase
 {
 
-    
-    public GunBase gunBase;
+    public List<GunBase> gunsBase;
 
     public Transform gunPosition;
 
@@ -22,24 +21,36 @@ public class PlayerAbilityShoot : PlayerAbilityBase
 
         inputs.Gameplay.Shoot.performed += ctx => StartShoot();
         inputs.Gameplay.Shoot.canceled += ctx => CancelShoot();
+        inputs.Gameplay.FirstWeapon.performed += ctx => SwitchGun(gunsBase[0]);
+        inputs.Gameplay.SecondWeapon.performed += ctx => SwitchGun(gunsBase[1]);
     }
 
     private void CreateGun()
     {
-        _currentGun = Instantiate(gunBase, gunPosition);
-        _currentGun.transform.localPosition = _currentGun.transform.localEulerAngles = Vector3.zero;
+        for(int i = 0; i <  gunsBase.Count; i++)
+        {
+            var a = Instantiate(gunsBase[i], gunPosition);
+            a.transform.localPosition = a.transform.localEulerAngles = Vector3.zero;
+            gunsBase[i] = a;
+        }
+        SwitchGun(gunsBase[0]);
+    }
+
+    private void SwitchGun(GunBase nextGun)
+    {
+        _currentGun = nextGun;
+        Debug.Log(_currentGun);
+        Debug.Log(_currentGun.isActiveAndEnabled);
     }
 
     private void StartShoot()
     {
         _currentGun.StartShoot();
-        Debug.Log("Start Shoot");
     }
-    
+
     private void CancelShoot()
     {
         _currentGun.StopShoot();
-        Debug.Log("Cancel Shoot");
     }
 
 }
