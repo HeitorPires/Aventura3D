@@ -7,9 +7,9 @@ using Animation;
 namespace Enemy
 {
 
-    public class EnemyBase : MonoBehaviour
+    public class EnemyBase : MonoBehaviour, IDamageable
     {
-
+        public Collider collider;
 
         public float startLife = 10;
 
@@ -46,6 +46,7 @@ namespace Enemy
 
         protected virtual void OnKill()
         {
+            if(collider != null) collider.enabled = false;
             Destroy(gameObject, 3f);
             PlayAnimationByTrigger(AnimationType.DEATH);
         }
@@ -57,6 +58,12 @@ namespace Enemy
                 OnKill();
         }
 
+        public void Damage(float damage)
+        {
+            OnDamage(damage);
+        }
+        
+        
         #region ANIMATION
         private void BornAnimation()
         {
@@ -80,6 +87,7 @@ namespace Enemy
                 OnDamage(5f);
             }
         }
+
 
         #endregion
 
