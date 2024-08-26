@@ -26,7 +26,7 @@ public class HealthBase : MonoBehaviour, IDamageable
         ResetLife();
     }
 
-    protected virtual void ResetLife()
+    public void ResetLife()
     {
         _currentLife = startLife;
     }

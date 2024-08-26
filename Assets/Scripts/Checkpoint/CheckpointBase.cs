@@ -21,7 +21,7 @@ public class CheckpointBase : MonoBehaviour
     private void CheckpointCheck()
     {
         TurnItOn();
-        SaveCheckpoint();
+        CheckpointManager.Instance.SaveCheckpoint(key);
     }
 
     private void TurnItOn()
