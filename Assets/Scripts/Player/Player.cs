@@ -16,6 +16,7 @@ public class Player : MonoBehaviour//, IDamageable
 
     public Animator animator;
 
+    [Header("Life")]
     public HealthBase healthBase;
 
     [Header("Run Setup")]
@@ -47,38 +48,42 @@ public class Player : MonoBehaviour//, IDamageable
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
-
-        var inputAxisVertical = Input.GetAxis("Vertical");
-        var speedVector = transform.forward * inputAxisVertical * speed;
-
-        if (characterController.isGrounded)
+        if (_alive)
         {
-            _vSpeed = 0;
-            if (Input.GetKeyDown(jumpKeyCode))
-                _vSpeed = jumpSpeed;
-        }
 
-        _vSpeed -= gravity * Time.deltaTime;
-        speedVector.y = _vSpeed;
+            transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
 
-        var isWalking = inputAxisVertical != 0;
-        if (isWalking)
-        {
-            if (Input.GetKey(runKeyCode))
+            var inputAxisVertical = Input.GetAxis("Vertical");
+            var speedVector = transform.forward * inputAxisVertical * speed;
+
+            if (characterController.isGrounded)
             {
-                speedVector *= speedRun;
-                animator.speed = speedRun;
+                _vSpeed = 0;
+                if (Input.GetKeyDown(jumpKeyCode))
+                    _vSpeed = jumpSpeed;
             }
 
-            else
-                animator.speed = 1f;
+            _vSpeed -= gravity * Time.deltaTime;
+            speedVector.y = _vSpeed;
+
+            var isWalking = inputAxisVertical != 0;
+            if (isWalking)
+            {
+                if (Input.GetKey(runKeyCode))
+                {
+                    speedVector *= speedRun;
+                    animator.speed = speedRun;
+                }
+
+                else
+                    animator.speed = 1f;
+            }
+
+            characterController.Move(speedVector * Time.deltaTime);
+
+            animator.SetBool("Run", inputAxisVertical != 0);
+
         }
-
-        characterController.Move(speedVector * Time.deltaTime);
-
-        animator.SetBool("Run", inputAxisVertical != 0);
-
         
     }
 
