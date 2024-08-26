@@ -83,17 +83,5 @@ namespace Enemy
 
         #endregion
 
-        #region DEBUG
-        private void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.T))
-            {
-                OnDamage(5f);
-            }
-        }
-
-
-        #endregion
-
     }
 }

@@ -4897,9 +4897,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3982550853423247094}
-  - component: {fileID: 452617203969622292}
   - component: {fileID: 8999691395014397392}
   - component: {fileID: 7624861665008976070}
+  - component: {fileID: 8239403731528389830}
   m_Layer: 0
   m_Name: PFB_EnemyRed
   m_TagString: Untagged
@@ -4924,27 +4924,6 @@ Transform:
   - {fileID: 8918721129672250558}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &452617203969622292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3811312588398952798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6a4c43b14b832e4ca6be5c161c95fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collider: {fileID: 7624861665008976070}
-  ParticleSystem: {fileID: 7050222129016345425}
-  flashColor: {fileID: 677120659033968907}
-  startLife: 10
-  startAnimationDuration: 0.2
-  startAnimationEase: 1
-  startWithBornAnimation: 1
-  _animationBase: {fileID: 8999691395014397392}
-  _currentLife: 0
 --- !u!114 &8999691395014397392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4957,7 +4936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3962531d7787f294f8287655faf22912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 6005023085313768415}
   animationSetups:
   - animationType: 1
     trigger: Idle
@@ -4988,6 +4967,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.6812134, y: 4.5859165, z: 4.5536957}
   m_Center: {x: 0.048980713, y: 1.7929583, z: -0.016708374}
+--- !u!114 &8239403731528389830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811312588398952798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cecc6016d106ed4386a2513b64a3118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: {fileID: 7624861665008976070}
+  ParticleSystem: {fileID: 7050222129016345425}
+  flashColor: {fileID: 677120659033968907}
+  startLife: 10
+  startAnimationDuration: 0.2
+  startAnimationEase: 27
+  startWithBornAnimation: 1
+  _animationBase: {fileID: 8999691395014397392}
+  _currentLife: 0
+  waypoints: []
+  minDistance: 1
+  speed: 1
 --- !u!1 &7670910660737538953
 GameObject:
   m_ObjectHideFlags: 0
@@ -5115,6 +5118,11 @@ MonoBehaviour:
 --- !u!4 &5503159637678119171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6281779893053664936, guid: 8bec79f815163ae43b0faf61a3b8baca, type: 3}
+  m_PrefabInstance: {fileID: 1977778492212115371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6005023085313768415 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5198380618090564724, guid: 8bec79f815163ae43b0faf61a3b8baca, type: 3}
   m_PrefabInstance: {fileID: 1977778492212115371}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &6634939507958194796 stripped
