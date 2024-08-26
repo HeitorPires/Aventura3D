@@ -39,8 +39,6 @@ public class PlayerAbilityShoot : PlayerAbilityBase
     private void SwitchGun(GunBase nextGun)
     {
         _currentGun = nextGun;
-        Debug.Log(_currentGun);
-        Debug.Log(_currentGun.isActiveAndEnabled);
     }
 
     private void StartShoot()
