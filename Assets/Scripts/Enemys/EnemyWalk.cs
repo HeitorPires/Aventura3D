@@ -12,8 +12,12 @@ public class EnemyWalk : EnemyBase
 
     private int _index = 0;
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
+        if(waypoints.Length > 0)
+        {
+
         if (Vector3.Distance(transform.position, waypoints[_index].transform.position) < minDistance)
         {
             _index++;
@@ -22,7 +26,8 @@ public class EnemyWalk : EnemyBase
         }
 
         transform.position = Vector3.MoveTowards(transform.position, waypoints[_index].transform.position, speed * Time.deltaTime);
-
+        transform.LookAt(waypoints[_index].transform.position);
+        }
     }
 
 }
