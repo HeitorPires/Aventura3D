@@ -34,7 +34,7 @@ namespace Core.StateMachine
 
         public void SwitchStates(T state, params object[] objs)
         {
-            if (_currentState != null) _currentState.OnStateExit();
+            _currentState?.OnStateExit();
 
             _currentState = dictionaryState[state];
             _currentState.OnStateEnter(objs);
