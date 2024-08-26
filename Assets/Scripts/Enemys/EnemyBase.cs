@@ -86,7 +86,7 @@ namespace Enemy
             Player p = collision.gameObject.GetComponent<Player>();
             if(p != null)
             {
-                p.Damage(1);
+                p.healthBase.Damage(1);
             }
         }
 

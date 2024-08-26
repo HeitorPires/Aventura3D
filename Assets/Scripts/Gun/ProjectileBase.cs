@@ -28,7 +28,7 @@ public class ProjectileBase : MonoBehaviour
 
         foreach (string tag in tagsToHit)
         {
-            if(tag == collision.transform.tag)
+            if(collision.transform.CompareTag(tag))
             {
                 var damageable = collision.transform.GetComponent<IDamageable>();
                 if (damageable != null)

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBase : MonoBehaviour
+public class HealthBase : MonoBehaviour, IDamageable
 {
     public float startLife = 10f;
     [SerializeField] private float _currentLife;
@@ -42,4 +42,8 @@ public class HealthBase : MonoBehaviour
             Kill();
     }
 
+    public void Damage(float damage, Vector3 dir)
+    {
+        Damage(damage);
+    }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour//, IDamageable
 {
 
     public CharacterController characterController;
@@ -14,6 +14,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public Animator animator;
 
+    public HealthBase healthBase;
+
     [Header("Run Setup")]
     public float speedRun = 1.5f;
 
@@ -24,8 +26,19 @@ public class Player : MonoBehaviour, IDamageable
     private float _vSpeed = 0f;
 
     [Header("Flash")]
-    public List<FlashColor> flashColorList;
-    
+    public List<FlashColor> flashColors;
+
+
+    private void Awake()
+    {
+        OnValidate();
+        healthBase.onDamage += Damage;
+    }
+
+    private void OnValidate()
+    {
+        if(healthBase == null) healthBase = GetComponent<HealthBase>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -62,22 +75,17 @@ public class Player : MonoBehaviour, IDamageable
 
         animator.SetBool("Run", inputAxisVertical != 0);
 
-
+        
     }
 
-    public void Damage(float damage)
+    public void Damage(HealthBase healthBase)
     {
-        FlashColors();
+        flashColors.ForEach(i => i.Flash());
     }
 
     public void Damage(float damage, Vector3 dir)
     {
-        FlashColors();
-    }
-
-    public void FlashColors()
-    {
-        flashColorList.ForEach(i => i.Flash());
+        
     }
 
 }
