@@ -27,10 +27,6 @@ namespace Animation
             if (setup != null) animator.SetTrigger(setup.trigger);
 
         }
-    
-    
-    
-    
     }
 
     [System.Serializable]

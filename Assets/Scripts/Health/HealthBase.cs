@@ -37,9 +37,9 @@ public class HealthBase : MonoBehaviour
     public void Damage(float damage)
     {
         _currentLife -= damage;
+        onDamage?.Invoke(this);
         if (_currentLife <= 0)
             Kill();
-        onDamage?.Invoke(this);
     }
 
 }

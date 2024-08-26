@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDestroy: 3
-  damageAmount: 1
+  damageAmount: 5
   speed: 50
   tagsToHit:
   - Enemy

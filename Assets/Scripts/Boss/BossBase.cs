@@ -36,6 +36,10 @@ namespace Boss
         public float speed = 5f;
         public List<Transform> waypoints;
 
+        [Header("VFX")]
+        public FlashColor flashColor;
+        public ParticleSystem particleSystem;
+
         private StateMachine<BossAction> stateMachine;
         [SerializeField]private AnimationBase _animationBase;
 
@@ -43,6 +47,7 @@ namespace Boss
         {
             Init();
             healthBase.onKill += OnBossKill;
+            healthBase.onDamage += OnBossDamage;
         }
 
         private void Init()
@@ -61,6 +66,13 @@ namespace Boss
         public void OnBossKill(HealthBase healthBase)
         {
             SwitchState(BossAction.DEATH);
+        }
+        
+        public void OnBossDamage(HealthBase healthBase)
+        {
+            Debug.Log("Damage");
+            if (flashColor != null) flashColor.Flash();
+            if (particleSystem != null) particleSystem.Play();
         }
 
         #region DEBUG

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using NaughtyAttributes;
 
 
 namespace Core.StateMachine
@@ -29,8 +28,6 @@ namespace Core.StateMachine
         {
             dictionaryState.Add(typeEnum, state);
         }
-
-
 
         public void SwitchStates(T state, params object[] objs)
         {

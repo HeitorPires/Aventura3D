@@ -41,6 +41,16 @@ public class ProjectileBase : MonoBehaviour
 
                     Destroy(gameObject);
                 }
+
+                else
+                {
+                    var healthBase = collision.transform.GetComponent<HealthBase>();
+                    if(healthBase != null)
+                    {
+                        healthBase.Damage(damageAmount);
+                        Destroy(gameObject);
+                    }
+                }
                 break;
             }
 
