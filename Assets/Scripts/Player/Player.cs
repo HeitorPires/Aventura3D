@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour//, IDamageable
 {
+    public List<Collider> colliders;
 
     public CharacterController characterController;
     public float speed = 1f;
@@ -23,16 +25,18 @@ public class Player : MonoBehaviour//, IDamageable
     public KeyCode jumpKeyCode = KeyCode.Space;
     public KeyCode runKeyCode = KeyCode.LeftShift;
 
-    private float _vSpeed = 0f;
-
     [Header("Flash")]
     public List<FlashColor> flashColors;
+
+    private float _vSpeed = 0f;
+    private bool _alive = true;
 
 
     private void Awake()
     {
         OnValidate();
         healthBase.onDamage += Damage;
+        healthBase.onKill += OnKill;
     }
 
     private void OnValidate()
@@ -86,6 +90,16 @@ public class Player : MonoBehaviour//, IDamageable
     public void Damage(float damage, Vector3 dir)
     {
         
+    }
+
+    private void OnKill(HealthBase healthBase)
+    {
+        if (_alive)
+        {
+            _alive = false;
+            animator.SetTrigger("Death");
+            colliders.ForEach(i => i.enabled = false);
+        }
     }
 
 }
