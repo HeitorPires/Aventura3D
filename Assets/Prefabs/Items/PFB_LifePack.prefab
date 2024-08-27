@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3574529535824562756}
   - component: {fileID: 5102343959740210281}
   m_Layer: 0
-  m_Name: PFB_Coin
+  m_Name: PFB_LifePack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,9 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76192a68f0e5da64096c7c0831c5db9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemType: 1
   playerTag: Player
   particleSystem: {fileID: 0}
-  timeToDestroy: 3
+  timeToDestroy: 0
   graphicItem: {fileID: 0}
   audioSource: {fileID: 0}
 --- !u!135 &5102343959740210281

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Items;
 
 public class SOUIIntUpdate : MonoBehaviour
 {
@@ -12,8 +13,6 @@ public class SOUIIntUpdate : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (itemManager != null)
-            itemManager.onCollect += UpdateCoinsUI;
     }
 
 
