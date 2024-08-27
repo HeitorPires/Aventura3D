@@ -7,7 +7,7 @@ using UnityEngine;
 public class GunShootLimit : GunBase
 {
 
-    public string uiAmmoName = "UIGunAmmo";
+    public string uIAmmoName = "UIGunAmmo";
 
     public List<UIFillUpdater> uIGunUpdaters;
 
@@ -81,7 +81,7 @@ public class GunShootLimit : GunBase
         var uIs = GameObject.FindObjectsOfType<UIFillUpdater>().ToList();
         foreach (var u in uIs)
         {
-            if (u.name == uiAmmoName)
+            if (u.name == uIAmmoName)
                 uIGunUpdaters.Add(u);
 
         }
