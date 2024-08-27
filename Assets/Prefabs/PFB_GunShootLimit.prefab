@@ -124,6 +124,7 @@ MonoBehaviour:
   timeBetweenShoot: 0.2
   speed: 50
   shootKeyCode: 113
+  uiAmmoName: UIGunAmmo
   uIGunUpdaters: []
   maxShoot: 5
   timeToRecharge: 1

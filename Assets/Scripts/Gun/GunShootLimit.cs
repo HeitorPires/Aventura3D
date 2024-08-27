@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GunShootLimit : GunBase
 {
+
+    public string uiAmmoName = "UIGunAmmo";
 
     public List<UIFillUpdater> uIGunUpdaters;
 
@@ -15,6 +18,7 @@ public class GunShootLimit : GunBase
 
     private bool _recharging = false;
 
+
     private void Awake()
     {
         GetAllUIs();
@@ -23,11 +27,11 @@ public class GunShootLimit : GunBase
     protected override IEnumerator ShootCoroutine()
     {
 
-        if(_recharging) yield break;
+        if (_recharging) yield break;
 
         while (true)
         {
-            if(_currentShoots < maxShoot)
+            if (_currentShoots < maxShoot)
             {
                 Shoot();
                 _currentShoots++;
@@ -41,7 +45,7 @@ public class GunShootLimit : GunBase
 
     private void CheckRecharge()
     {
-        if(_currentShoots >= maxShoot)
+        if (_currentShoots >= maxShoot)
         {
             StopShoot();
             StartRecharge();
@@ -57,10 +61,10 @@ public class GunShootLimit : GunBase
     IEnumerator RechargeCoroutine()
     {
         float time = 0;
-        while(time < timeToRecharge)
+        while (time < timeToRecharge)
         {
             time += Time.deltaTime;
-            uIGunUpdaters.ForEach(i => i.UpdateValue(time/timeToRecharge));
+            uIGunUpdaters.ForEach(i => i.UpdateValue(time / timeToRecharge));
             yield return new WaitForEndOfFrame();
         }
         _currentShoots = 0;
@@ -74,7 +78,14 @@ public class GunShootLimit : GunBase
 
     private void GetAllUIs()
     {
-        uIGunUpdaters = GameObject.FindObjectsOfType<UIFillUpdater>().ToList();
-    }
+        var uIs = GameObject.FindObjectsOfType<UIFillUpdater>().ToList();
+        foreach (var u in uIs)
+        {
+            if (u.name == uiAmmoName)
+                uIGunUpdaters.Add(u);
 
+        }
+    }
 }
+
+    
