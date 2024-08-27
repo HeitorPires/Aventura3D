@@ -24,12 +24,13 @@ public class GunBase : MonoBehaviour
         }
     }
 
-    protected virtual  void Shoot()
+    protected virtual void Shoot()
     {
         var projectile = Instantiate(prefabProjectile);
         projectile.transform.position = positionToShoot.position;
         projectile.transform.rotation = positionToShoot.rotation;
         projectile.speed = speed;
+
     }
 
     public void StartShoot()

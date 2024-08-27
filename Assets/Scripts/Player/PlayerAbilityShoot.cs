@@ -44,6 +44,7 @@ public class PlayerAbilityShoot : PlayerAbilityBase
     private void StartShoot()
     {
         _currentGun.StartShoot();
+        ShakeCamera.Instance.Shake();
     }
 
     private void CancelShoot()
