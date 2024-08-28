@@ -15,6 +15,7 @@ public class HealthBase : MonoBehaviour, IDamageable
     public Action<HealthBase> onKill;
 
     public bool destroyOnKill = true;
+    public float timeToDestroy = 3f;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class HealthBase : MonoBehaviour, IDamageable
     protected virtual void Kill()
     {
         onKill?.Invoke(this);
-        if(destroyOnKill) Destroy(gameObject, 3f);
+        if(destroyOnKill) Destroy(gameObject, timeToDestroy);
     }
 
     public void Damage(float damage)
