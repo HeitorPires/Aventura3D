@@ -28,7 +28,11 @@ public class ChestItemCoin : ChestItemBase
         for (int i = 0; i < coinAmount; i++)
         {
             var item = Instantiate(coinObject);
-            item.transform.position = transform.position + Random.Range(randomRange.x ,randomRange.y) * Vector3.forward + Random.Range(randomRange.x, randomRange.y) * Vector3.right;
+            if (item.TryGetComponent<Collider>(out var collider))
+                collider.enabled = false;
+            Vector3 randomOffset = new Vector3(Random.Range(randomRange.x, randomRange.y), 0, Random.Range(randomRange.x, randomRange.y));
+            item.transform.position = transform.position + randomOffset;
+            //item.transform.position = transform.position + Random.Range(randomRange.x ,randomRange.y) * Vector3.forward + Random.Range(randomRange.x, randomRange.y) * Vector3.right;
             item.transform.DOScale(0, animationDuration).From().SetEase(ease);
             _itens.Add(item);
         }
