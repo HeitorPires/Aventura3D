@@ -14,7 +14,7 @@ public class DestructableItemBase : MonoBehaviour
 
     public int dropCoinsAmaount = 5;
     public GameObject coinPrefab;
-    public Transform dropPosition;
+    public List<Transform> dropPositions;
 
     private void OnValidate()
     {
@@ -25,6 +25,13 @@ public class DestructableItemBase : MonoBehaviour
     {
         OnValidate();
         HealthBase.onDamage += OnDamage;
+        HealthBase.onKill += OnKill;
+    }
+
+    private void OnKill(HealthBase h)
+    {
+        if (TryGetComponent<Collider>(out var collider))
+            collider.enabled = false;
     }
 
     private void OnDamage(HealthBase h)
@@ -37,7 +44,7 @@ public class DestructableItemBase : MonoBehaviour
     private void DropCoins()
     {
         var i = Instantiate(coinPrefab);
-        i.transform.position = dropPosition.position;
+        i.transform.position = dropPositions[Random.Range(0, dropPositions.Count)].position;
         i.transform.DOScale(0, 1f).From().SetEase(Ease.OutBack);
     }
 
@@ -52,7 +59,7 @@ public class DestructableItemBase : MonoBehaviour
         for(int i = 0; i < dropCoinsAmaount; i++)
         {
             DropCoins();
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(.15f);
         }
     }
 
