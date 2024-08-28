@@ -26,6 +26,11 @@ namespace Items
             itensSetups.ForEach(i => i.soInt.value = 0);
         }
 
+        public ItemSetup GetByType(ItemType itemType)
+        {
+            return itensSetups.Find(i => i.itemType == itemType);
+        }
+        
         public void AddByType(ItemType itemType, int amount = 1)
         {
             if (amount < 0) return;
