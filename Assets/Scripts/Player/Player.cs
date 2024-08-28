@@ -41,12 +41,12 @@ public class Player : Singleton<Player>
         healthBase.onDamage += Damage;
         healthBase.onKill += OnKill;
     }
-   
-    
+
+
 
     private void OnValidate()
     {
-        if(healthBase == null) healthBase = GetComponent<HealthBase>();
+        if (healthBase == null) healthBase = GetComponent<HealthBase>();
     }
 
     // Update is called once per frame
@@ -88,7 +88,7 @@ public class Player : Singleton<Player>
             animator.SetBool("Run", inputAxisVertical != 0);
 
         }
-        
+
     }
 
     public void Damage(HealthBase healthBase)
@@ -100,7 +100,7 @@ public class Player : Singleton<Player>
 
     public void Damage(float damage, Vector3 dir)
     {
-        
+
     }
 
     private void OnKill(HealthBase healthBase)
@@ -138,7 +138,7 @@ public class Player : Singleton<Player>
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
         }
     }
-    
+
 
 
 }
