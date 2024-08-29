@@ -48,7 +48,6 @@ public class ChestItemCoin : ChestItemBase
             item.transform.DOScale(0, animationDuration / 2).SetDelay(animationDuration / 2);
             ItemManager.Instance.AddByType(ItemType.COIN);
         }
-        _itens.Clear();
     }
 
 }
