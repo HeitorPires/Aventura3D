@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Core.Singleton;
 using Cloth;
+using System.Runtime.CompilerServices;
 
 public class Player : Singleton<Player>
 {
@@ -36,6 +37,7 @@ public class Player : Singleton<Player>
 
     private float _vSpeed = 0f;
     private bool _alive = true;
+    private bool _isJumping = false;
 
 
     protected override void Awake()
@@ -66,9 +68,24 @@ public class Player : Singleton<Player>
 
             if (characterController.isGrounded)
             {
+                if (_isJumping)
+                {
+                    _isJumping = false;
+                    animator.SetTrigger("Land");
+                }
+                
                 _vSpeed = 0;
+
                 if (Input.GetKeyDown(jumpKeyCode))
+                {
                     _vSpeed = jumpSpeed;
+                    if (!_isJumping)
+                    {
+                        animator.SetTrigger("Jump");
+                        _isJumping = true;
+                    }
+                }
+                
             }
 
             _vSpeed -= gravity * Time.deltaTime;
