@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.Singleton;
+using Cloth;
 
 public class Player : Singleton<Player>
 {
@@ -29,6 +30,9 @@ public class Player : Singleton<Player>
 
     [Header("Flash")]
     public List<FlashColor> flashColors;
+
+    [Space]
+    [SerializeField] private ClothChanger _clothChanger;
 
     private float _vSpeed = 0f;
     private bool _alive = true;
@@ -139,7 +143,29 @@ public class Player : Singleton<Player>
         }
     }
 
+    public void ChangeSpeed(float speed, float duration)
+    {
+        StartCoroutine(ChangeSpeedCoroutine(speed, duration));
+    }
+    IEnumerator ChangeSpeedCoroutine(float speed, float duration)
+    {
+        var defaultSpeed = this.speed;
+        this.speed = speed;
+        yield return new WaitForSeconds(duration);
+        this.speed = defaultSpeed;
+    }
+    
+    public void ChangeTexture(ClothSetup setup, float duration)
+    {
+        StartCoroutine(ChangeTextureCoroutine(setup, duration));
+    }
 
+    IEnumerator ChangeTextureCoroutine(ClothSetup setup, float duration)
+    {
+        _clothChanger.ChangeTexture(setup);
+        yield return new WaitForSeconds(duration);
+        _clothChanger.ResetTexture();
+    }
 
 }
 
