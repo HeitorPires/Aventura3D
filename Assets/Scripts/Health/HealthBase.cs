@@ -1,3 +1,4 @@
+using Cloth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ public class HealthBase : MonoBehaviour, IDamageable
 
     public bool destroyOnKill = true;
     public float timeToDestroy = 3f;
+
+    public float damageMultiplier = 1f;
 
     private void Awake()
     {
@@ -41,7 +44,7 @@ public class HealthBase : MonoBehaviour, IDamageable
 
     public void Damage(float damage)
     {
-        _currentLife -= damage;
+        _currentLife -= damage * damageMultiplier;
         UpdateUI();
         onDamage?.Invoke(this);
         if (_currentLife <= 0)
@@ -59,5 +62,17 @@ public class HealthBase : MonoBehaviour, IDamageable
         {
             uiHealthUpdater.ForEach(i => i.UpdateValue((float)_currentLife/startLife));
         }
+    }
+
+    public void ChangeDamageMultiplier(float damageMultiplier, float duration)
+    {
+        StartCoroutine(ChangeDamageMultiplierCoroutine(damageMultiplier, duration));
+    }
+
+    IEnumerator ChangeDamageMultiplierCoroutine(float damageMultiplier, float duration)
+    {
+        this.damageMultiplier = damageMultiplier;
+        yield return new WaitForSeconds(duration);
+        this.damageMultiplier = 1;
     }
 }
