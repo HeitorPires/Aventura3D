@@ -21,6 +21,15 @@ public class SaveManager : Singleton<SaveManager>
 
     #region SAVE
     [NaughtyAttributes.Button]
+
+    public void HandleSave(int level, string name)
+    {
+        SaveLastLevel(level);
+        SaveName(name);
+        SaveItems();
+        Save();
+    }
+
     private void Save()
     {
 
@@ -36,17 +45,22 @@ public class SaveManager : Singleton<SaveManager>
         File.WriteAllText(path, json);
     }
 
-    public void SaveLastLevel(int level)
+    private void SaveLastLevel(int level)
     {
         _saveSetup.lastLevel = level;
-        Save();
     }
 
-    public void SaveName(string name)
+    private void SaveName(string name)
     {
         _saveSetup.playerName = name;
-        Save();
     }
+
+    private void SaveItems()
+    {
+        _saveSetup.coins = Items.ItemManager.Instance.GetByType(Items.ItemType.COIN).soInt.value;
+        _saveSetup.health = Items.ItemManager.Instance.GetByType(Items.ItemType.LIFE_PACK).soInt.value;
+    }
+
     #endregion
 
 
@@ -57,4 +71,6 @@ public class SaveSetup
 {
     public int lastLevel;
     public string playerName;
+    public int coins;
+    public int health;
 }

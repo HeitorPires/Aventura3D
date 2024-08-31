@@ -26,12 +26,12 @@ public class EndGame : MonoBehaviour
         if (other.TryGetComponent<Player>(out var a))
         {
             a.canMove = false;
-            ShowEndGame();
+            ShowEndGame(a.name);
 
         }
     }
 
-    private void ShowEndGame()
+    private void ShowEndGame(string name)
     {
         _endGame = true;
         foreach (var i in endGameObjects)
@@ -39,7 +39,7 @@ public class EndGame : MonoBehaviour
             i.SetActive(true);
             //i.transform.DOScale(0, animationDuration).SetEase(ease).From();
         }
-        SaveManager.Instance.SaveLastLevel(currentLevel);
+        SaveManager.Instance.HandleSave(currentLevel, name);
 
     }
 }
