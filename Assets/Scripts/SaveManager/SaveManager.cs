@@ -2,18 +2,29 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core.Singleton;
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : Singleton<SaveManager>
 {
+    private SaveSetup _saveSetup;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        _saveSetup = new SaveSetup
+        {
+            lastLevel = 2,
+            playerName = "Heitor"
+        };
+
+    }
+
+    #region SAVE
     [NaughtyAttributes.Button]
     private void Save()
     {
-        SaveSetup setup = new SaveSetup();
-        setup.lastLevel = 2;
-        setup.playerName = "Heitor";
 
-        string setupToJson = JsonUtility.ToJson(setup);
+        string setupToJson = JsonUtility.ToJson(_saveSetup);
         SaveFile(setupToJson);
     }
 
@@ -25,17 +36,20 @@ public class SaveManager : MonoBehaviour
         File.WriteAllText(path, json);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void SaveLastLevel(int level)
     {
-        
+        _saveSetup.lastLevel = level;
+        Save();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SaveName(string name)
     {
-        
+        _saveSetup.playerName = name;
+        Save();
     }
+    #endregion
+
+
 }
 
 [System.Serializable]
