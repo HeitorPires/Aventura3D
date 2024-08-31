@@ -38,7 +38,7 @@ public class Player : Singleton<Player>
     private float _vSpeed = 0f;
     private bool _alive = true;
     private bool _isJumping = false;
-
+    public bool canMove = true;
 
     protected override void Awake()
     {
@@ -58,58 +58,62 @@ public class Player : Singleton<Player>
     // Update is called once per frame
     void Update()
     {
-        if (_alive)
+        if (canMove)
         {
-
-            transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
-
-            var inputAxisVertical = Input.GetAxis("Vertical");
-            var speedVector = transform.forward * inputAxisVertical * speed;
-
-            if (characterController.isGrounded)
+            if (_alive)
             {
-                if (_isJumping)
-                {
-                    _isJumping = false;
-                    animator.SetTrigger("Land");
-                }
-                
-                _vSpeed = 0;
 
-                if (Input.GetKeyDown(jumpKeyCode))
+                transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
+
+                var inputAxisVertical = Input.GetAxis("Vertical");
+                var speedVector = transform.forward * inputAxisVertical * speed;
+
+                if (characterController.isGrounded)
                 {
-                    _vSpeed = jumpSpeed;
-                    if (!_isJumping)
+                    if (_isJumping)
                     {
-                        animator.SetTrigger("Jump");
-                        _isJumping = true;
+                        _isJumping = false;
+                        animator.SetTrigger("Land");
                     }
+
+                    _vSpeed = 0;
+
+                    if (Input.GetKeyDown(jumpKeyCode))
+                    {
+                        _vSpeed = jumpSpeed;
+                        if (!_isJumping)
+                        {
+                            animator.SetTrigger("Jump");
+                            _isJumping = true;
+                        }
+                    }
+
                 }
-                
-            }
 
-            _vSpeed -= gravity * Time.deltaTime;
-            speedVector.y = _vSpeed;
+                _vSpeed -= gravity * Time.deltaTime;
+                speedVector.y = _vSpeed;
 
-            var isWalking = inputAxisVertical != 0;
-            if (isWalking)
-            {
-                if (Input.GetKey(runKeyCode))
+                var isWalking = inputAxisVertical != 0;
+                if (isWalking)
                 {
-                    speedVector *= speedRun;
-                    animator.speed = speedRun;
+                    if (Input.GetKey(runKeyCode))
+                    {
+                        speedVector *= speedRun;
+                        animator.speed = speedRun;
+                    }
+
+                    else
+                        animator.speed = 1f;
                 }
 
-                else
-                    animator.speed = 1f;
-            }
+                characterController.Move(speedVector * Time.deltaTime);
 
-            characterController.Move(speedVector * Time.deltaTime);
 
-            animator.SetBool("Run", inputAxisVertical != 0);
-
+                animator.SetBool("Run", inputAxisVertical != 0);
+            } 
         }
 
+        else animator.SetBool("Run", false);
     }
 
     public void Damage(HealthBase healthBase)
@@ -171,7 +175,7 @@ public class Player : Singleton<Player>
         yield return new WaitForSeconds(duration);
         this.speed = defaultSpeed;
     }
-    
+
     public void ChangeTexture(ClothSetup setup, float duration)
     {
         StartCoroutine(ChangeTextureCoroutine(setup, duration));

@@ -36,7 +36,7 @@ public class SaveManager : Singleton<SaveManager>
         File.WriteAllText(path, json);
     }
 
-    private void SaveLastLevel(int level)
+    public void SaveLastLevel(int level)
     {
         _saveSetup.lastLevel = level;
         Save();
