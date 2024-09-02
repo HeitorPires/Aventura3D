@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Items
-    {
+{
     public class CollectableItemBase : MonoBehaviour
     {
+        public SFXType sFXType = SFXType.NONE;
 
         public ItemType itemType;
 
@@ -14,11 +15,8 @@ namespace Items
         public float timeToDestroy = 3f;
         public GameObject graphicItem;
 
-        [Header("Sounds")]
-        public AudioSource audioSource;
-
         private bool _canCollect = true;
-        
+
         private void OnTriggerEnter(Collider collision)
         {
             if (_canCollect && collision.gameObject.CompareTag(playerTag))
@@ -26,6 +24,11 @@ namespace Items
                 _canCollect = false;
                 Collect();
             }
+        }
+
+        private void PlaySFX()
+        {
+            SFXPool.Instance.Play(sFXType);
         }
 
         protected virtual void Collect()
@@ -36,9 +39,9 @@ namespace Items
         protected virtual void OnCollect()
         {
             ItemManager.Instance.AddByType(itemType);
+            PlaySFX();
             HideObject();
             PlayParticleSystem();
-            PlaySounds();
             Destroy(gameObject, timeToDestroy);
         }
 
@@ -55,12 +58,6 @@ namespace Items
             if (particleSystem != null)
                 particleSystem.Play();
 
-        }
-
-        private void PlaySounds()
-        {
-            if (audioSource != null)
-                audioSource.Play();
         }
     }
 

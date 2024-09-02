@@ -46,12 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76192a68f0e5da64096c7c0831c5db9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sFXType: 4
   itemType: 0
   playerTag: Player
   particleSystem: {fileID: 0}
   timeToDestroy: 0
   graphicItem: {fileID: 0}
-  audioSource: {fileID: 0}
 --- !u!135 &5102343959740210281
 SphereCollider:
   m_ObjectHideFlags: 0
