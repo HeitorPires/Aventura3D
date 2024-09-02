@@ -61,6 +61,12 @@ namespace Items
             AddByType(ItemType.LIFE_PACK);
         }
 
+        private void LoadItemsFromSave()
+        {
+            AddByType(ItemType.COIN, SaveManager.Instance._saveSetup.coins);
+            AddByType(ItemType.LIFE_PACK, SaveManager.Instance._saveSetup.lifePack);
+        }
+
     }
 
     [Serializable]

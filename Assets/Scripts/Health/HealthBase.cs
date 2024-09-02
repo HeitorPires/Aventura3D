@@ -7,7 +7,7 @@ using UnityEngine;
 public class HealthBase : MonoBehaviour, IDamageable
 {
     public float startLife = 10f;
-    [SerializeField] private float _currentLife;
+    public float CurrentLife { get; private set; }
 
     public List<UIFillUpdater> uiHealthUpdater;
 
@@ -32,7 +32,7 @@ public class HealthBase : MonoBehaviour, IDamageable
 
     public void ResetLife()
     {
-        _currentLife = startLife;
+        CurrentLife = startLife;
         UpdateUI();
     }
 
@@ -44,10 +44,10 @@ public class HealthBase : MonoBehaviour, IDamageable
 
     public void Damage(float damage)
     {
-        _currentLife -= damage * damageMultiplier;
+        CurrentLife -= damage * damageMultiplier;
         UpdateUI();
         onDamage?.Invoke(this);
-        if (_currentLife <= 0)
+        if (CurrentLife <= 0)
             Kill();
     }
 
@@ -60,7 +60,7 @@ public class HealthBase : MonoBehaviour, IDamageable
     {
         if(uiHealthUpdater != null)
         {
-            uiHealthUpdater.ForEach(i => i.UpdateValue((float)_currentLife/startLife));
+            uiHealthUpdater.ForEach(i => i.UpdateValue((float)CurrentLife/startLife));
         }
     }
 

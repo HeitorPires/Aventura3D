@@ -39,6 +39,7 @@ public class Player : Singleton<Player>
     private bool _alive = true;
     private bool _isJumping = false;
     public bool canMove = true;
+    public ClothType CurrentCloth { get; private set; }
 
     protected override void Awake()
     {
@@ -46,6 +47,8 @@ public class Player : Singleton<Player>
         OnValidate();
         healthBase.onDamage += Damage;
         healthBase.onKill += OnKill;
+        CurrentCloth = ClothType.NONE;
+        Invoke(nameof(SetLoadHealth), .1f);
     }
 
 
@@ -123,9 +126,10 @@ public class Player : Singleton<Player>
         ShakeCamera.Instance.Shake();
     }
 
-    public void Damage(float damage, Vector3 dir)
+    private void SetLoadHealth()
     {
-
+        float targetHealth = healthBase.startLife - SaveManager.Instance._saveSetup.currentHealth ;
+        healthBase.Damage(targetHealth);
     }
 
     private void OnKill(HealthBase healthBase)
@@ -186,6 +190,7 @@ public class Player : Singleton<Player>
         _clothChanger.ChangeTexture(setup);
         yield return new WaitForSeconds(duration);
         _clothChanger.ResetTexture();
+        CurrentCloth = ClothType.NONE;
     }
 
 }

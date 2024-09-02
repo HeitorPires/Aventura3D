@@ -8,6 +8,7 @@ namespace Cloth
 
     public enum ClothType
     {
+        NONE,
         SPEED,
         STRONG,
         IMORTAL

@@ -7,7 +7,19 @@ public class CheckpointBase : MonoBehaviour
     public MeshRenderer meshRenderer;
     public int key = 01;
     private string checkpointKey = "CheckpointKey";
-    private bool checkpointSaved = false;
+    public bool checkpointSaved = false;
+
+    void Start()
+    {
+        Invoke(nameof(Init), .1f);
+    }
+
+    void Init()
+    {
+        if (SaveManager.Instance._saveSetup.checkpoints.Contains(key))
+            CheckpointCheck();
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +33,8 @@ public class CheckpointBase : MonoBehaviour
     private void CheckpointCheck()
     {
         TurnItOn();
-        CheckpointManager.Instance.SaveCheckpoint(key);
+        if(CheckpointManager.Instance.SaveCheckpoint(key))
+            SaveCheckpoint();
     }
 
     private void TurnItOn()
@@ -35,10 +48,7 @@ public class CheckpointBase : MonoBehaviour
     }
 
     private void SaveCheckpoint()
-    {
-        if(PlayerPrefs.GetInt(checkpointKey, 0) < key)
-            PlayerPrefs.SetInt(checkpointKey, key);
-
+    { 
         checkpointSaved = true;
     }
 

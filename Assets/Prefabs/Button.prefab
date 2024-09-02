@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -146,6 +146,8 @@ GameObject:
   - component: {fileID: 401320636369063459}
   - component: {fileID: 2673984722195421480}
   - component: {fileID: 8568685742123475040}
+  - component: {fileID: 7938895800452884444}
+  - component: {fileID: 7302160670943360646}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -254,4 +256,41 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2673984722195421480}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7938895800452884444}
+        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+        m_MethodName: Load
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+--- !u!114 &7938895800452884444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144663728901138623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9331059c04be5f94ba712392500e7948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7302160670943360646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144663728901138623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88c54f226c51d94d88b871db2bd20ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiTextName: {fileID: 2285495380175012863}

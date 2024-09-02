@@ -11,6 +11,12 @@ namespace Cloth
         public string tagToCompare = "Player";
         public float clothChangeDuration = 4f;
 
+        private void Start()
+        {
+            if (SaveManager.Instance._saveSetup.currentCloth == (int)type)
+                ChangeCloth();
+
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -22,9 +28,14 @@ namespace Cloth
 
         public virtual void Collect()
         {
+            ChangeCloth();
+            HideObject();
+        }
+
+        private void ChangeCloth()
+        {
             var setup = ClothManager.Instance.GetSetupByType(type);
             Player.Instance.ChangeTexture(setup, clothChangeDuration);
-            HideObject();
         }
 
         private void HideObject()
