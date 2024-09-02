@@ -24,7 +24,7 @@ public class GunShootLimit : GunBase
         GetAllUIs();
     }
 
-    protected override IEnumerator ShootCoroutine()
+    protected override IEnumerator ShootCoroutine(SFXType sFXType)
     {
 
         if (_recharging) yield break;
@@ -34,6 +34,7 @@ public class GunShootLimit : GunBase
             if (_currentShoots < maxShoot)
             {
                 Shoot();
+                SFXPool.Instance.Play(sFXType);
                 _currentShoots++;
                 CheckRecharge();
                 UpdateUI();

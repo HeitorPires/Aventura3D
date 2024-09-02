@@ -13,6 +13,7 @@ public class EndGame : MonoBehaviour
     public Ease ease = Ease.OutBounce;
 
     public int currentLevel;
+    public MusicType musicType;
 
     private bool _endGame = false;
 
@@ -27,7 +28,7 @@ public class EndGame : MonoBehaviour
         {
             a.canMove = false;
             ShowEndGame(a.name);
-
+            SoundManager.Instance.PlayMusicByType(musicType);
         }
     }
 

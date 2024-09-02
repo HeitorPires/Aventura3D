@@ -15,11 +15,12 @@ public class GunBase : MonoBehaviour
     private Coroutine _currentCoroutine;
 
 
-    protected virtual IEnumerator ShootCoroutine()
+    protected virtual IEnumerator ShootCoroutine(SFXType sFXSound)
     {
         while (true)
         {
             Shoot();
+            SFXPool.Instance.Play(sFXSound);
             yield return new WaitForSeconds(timeBetweenShoot);
         }
     }
@@ -33,10 +34,10 @@ public class GunBase : MonoBehaviour
 
     }
 
-    public void StartShoot()
+    public void StartShoot(SFXType sFXSound)
     {
         StopShoot();
-        _currentCoroutine = StartCoroutine(ShootCoroutine());
+        _currentCoroutine = StartCoroutine(ShootCoroutine(sFXSound));
     }
 
     public void StopShoot()

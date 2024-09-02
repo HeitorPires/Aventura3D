@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SFXPool : Singleton<SFXPool>
 {
@@ -10,6 +11,7 @@ public class SFXPool : Singleton<SFXPool>
     private List<AudioSource> _audioSourceList;
     public int poolSize = 10;
     private int _index = 0;
+    public AudioMixerGroup mixerGroup;
 
     protected override void Awake()
     {
@@ -30,7 +32,9 @@ public class SFXPool : Singleton<SFXPool>
     {
         GameObject go = new GameObject("SFX_Pool");
         go.transform.SetParent(transform);
-        _audioSourceList.Add(go.AddComponent<AudioSource>());
+        go.AddComponent<AudioSource>();
+        go.GetComponent<AudioSource>().outputAudioMixerGroup = mixerGroup;
+        _audioSourceList.Add(go.GetComponent<AudioSource>());
     }
 
     public void Play(SFXType type)

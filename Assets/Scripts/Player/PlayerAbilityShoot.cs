@@ -12,6 +12,8 @@ public class PlayerAbilityShoot : PlayerAbilityBase
     public Transform gunPosition;
     public FlashColor flashColor;
 
+    public SFXType SfxSound;
+
     private GunBase _currentGun;
 
     protected override void Init()
@@ -44,7 +46,7 @@ public class PlayerAbilityShoot : PlayerAbilityBase
 
     private void StartShoot()
     {
-        _currentGun.StartShoot();
+        _currentGun.StartShoot(SfxSound);
         flashColor?.Flash();
         ShakeCamera.Instance.Shake();
     }

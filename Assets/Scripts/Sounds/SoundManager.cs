@@ -13,6 +13,7 @@ public class SoundManager : Singleton<SoundManager>
     public void PlayMusicByType(MusicType type)
     {
         var music = GetMusicByType(type);
+        if (music.musicType == MusicType.NONE) return;
         musicSource.clip = music.audioClip;
         musicSource.Play();
 
@@ -33,9 +34,8 @@ public class SoundManager : Singleton<SoundManager>
 public enum MusicType
 {
     NONE,
-    TYPE_01,
-    TYPE_02,
-    TYPE_03
+    BACKGROUND,
+    ENDGAME
 }
 
 [System.Serializable]
@@ -48,7 +48,7 @@ public class MusicSetup
 public enum SFXType
 {
     NONE,
-    TYPE_01,
+    SHOOT,
     TYPE_02,
     TYPE_03,
     COIN

@@ -1,1 +1,1 @@
-{"lastLevel":1,"playerName":"Player","coins":3,"lifePack":3,"currentCloth":0,"currentHealth":3.0,"checkpoints":[1,2]}
+{"lastLevel":1,"playerName":"Player","coins":14,"lifePack":9,"currentCloth":0,"currentHealth":2.0,"checkpoints":[1,2],"useSave":true}
