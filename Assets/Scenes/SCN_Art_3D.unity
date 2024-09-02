@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.72811294, g: 0.4525996, b: 0.73379797, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -651,7 +651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLife: 20
-  _currentLife: 0
   uiHealthUpdater: []
   destroyOnKill: 1
   timeToDestroy: 2.5
@@ -1535,6 +1534,134 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1541895348820088928, guid: ce318e646b63c934a923254be91ebc80, type: 3}
   m_PrefabInstance: {fileID: 7673728778185869125}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &213057400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 213057402}
+  - component: {fileID: 213057401}
+  m_Layer: 0
+  m_Name: DM-CGS-45
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &213057401
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213057400}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.331
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &213057402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213057400}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 423.47946, y: -7.750841, z: 34.698982}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &214321130
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,7 +3347,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502669146}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21129228, y: 0.39962125, z: -0.095204346, w: 0.8869017}
+  m_LocalRotation: {x: 0.2112923, y: 0.39962122, z: -0.095204346, w: 0.8869017}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10022,6 +10149,7 @@ MonoBehaviour:
   - {fileID: 1755247085}
   - {fileID: 1755247084}
   _clothChanger: {fileID: 1175269105}
+  canMove: 1
 --- !u!4 &730620932
 Transform:
   m_ObjectHideFlags: 0
@@ -10092,7 +10220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLife: 5
-  _currentLife: 0
   uiHealthUpdater:
   - {fileID: 1751547084}
   destroyOnKill: 0
@@ -11562,7 +11689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911814890}
   serializedVersion: 2
-  m_LocalRotation: {x: -4.8555016e-10, y: 0.993609, z: -0.11287677, w: -0.000000004274104}
+  m_LocalRotation: {x: 4.855501e-10, y: 0.993609, z: -0.11287677, w: 0.0000000042741037}
   m_LocalPosition: {x: 44.200012, y: -6.9799995, z: -60.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13367,7 +13494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 13.91043, z: -25.52455}
+  m_FollowOffset: {x: 0, y: 12, z: -20}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -13630,7 +13757,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229041029}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2546305, y: 0.38748327, z: -0.112263225, w: 0.8788726}
+  m_LocalRotation: {x: 0.2546305, y: 0.38748327, z: -0.11226323, w: 0.8788726}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14528,7 +14655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 13.91043, z: -25.52455}
+  m_FollowOffset: {x: 0, y: 12, z: -20}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -14655,7 +14782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 13.91043, z: -25.52455}
+  m_FollowOffset: {x: 0, y: 12, z: -20}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -24116,7 +24243,9 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 1175269103}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras: []
+  m_ChildCameras:
+  - {fileID: 1613633022}
+  - {fileID: 911814892}
   m_Instructions:
   - m_FullHash: 1432961145
     m_VirtualCamera: {fileID: 1613633022}
@@ -27855,3 +27984,4 @@ SceneRoots:
   - {fileID: 1303010309}
   - {fileID: 1138854003}
   - {fileID: 1625061877}
+  - {fileID: 213057402}

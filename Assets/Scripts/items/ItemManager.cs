@@ -18,7 +18,10 @@ namespace Items
 
         private void Start()
         {
-            Reset();
+            if (SaveManager.Instance._saveSetup.useSave)
+                LoadItemsFromSave();
+            else
+                Reset();
         }
 
         public void Reset()

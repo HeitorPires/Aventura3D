@@ -16,18 +16,13 @@ public class SaveManager : SingletonPersistent<SaveManager>
     protected override void Awake()
     {
         base.Awake();
-        
+
         Invoke(nameof(Load), .1f);
     }
 
     private void CreateNewSave()
     {
-        _saveSetup = new SaveSetup
-        {
-            lastLevel = 0,
-            playerName = ""
-        };
-
+        _saveSetup = new();
     }
 
     #region SAVE
@@ -79,7 +74,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
         List<CheckpointBase> checkpointList = CheckpointManager.Instance.checkpoints;
         checkpointList.ForEach(i =>
         {
-            if(i.checkpointSaved && !_saveSetup.checkpoints.Contains(i.key))
+            if (i.checkpointSaved && !_saveSetup.checkpoints.Contains(i.key))
             {
                 _saveSetup.checkpoints.Add(i.key);
             }
@@ -94,7 +89,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
     private void SaveLife()
     {
         _saveSetup.currentHealth = Player.Instance.healthBase.CurrentLife;
-        if(_saveSetup.currentHealth <= 0)
+        if (_saveSetup.currentHealth <= 0)
         {
             _saveSetup.currentHealth = Player.Instance.healthBase.startLife;
         }
@@ -123,6 +118,12 @@ public class SaveManager : SingletonPersistent<SaveManager>
         }
     }
     #endregion
+
+    public void NotUseSave()
+    {
+        _saveSetup.useSave = false;
+    }
+
 }
 
 [System.Serializable]
@@ -135,4 +136,5 @@ public class SaveSetup
     public int currentCloth;
     public float currentHealth;
     public List<int> checkpoints = new();
+    public bool useSave = true;
 }
