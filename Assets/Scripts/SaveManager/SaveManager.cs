@@ -22,6 +22,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
 
     private void CreateNewSave()
     {
+        if (_saveSetup != null) _saveSetup = null;
         _saveSetup = new();
     }
 
@@ -99,7 +100,7 @@ public class SaveManager : SingletonPersistent<SaveManager>
 
     #region LOAD
     [NaughtyAttributes.Button]
-    private void Load()
+    public void Load()
     {
         string fileLoaded = "";
 
@@ -107,8 +108,12 @@ public class SaveManager : SingletonPersistent<SaveManager>
         {
             fileLoaded = File.ReadAllText(_path);
 
+            if (_saveSetup != null)
+                _saveSetup = null;
+
             _saveSetup = JsonUtility.FromJson<SaveSetup>(fileLoaded);
 
+            _saveSetup.useSave = true;
             FileLoaded?.Invoke(_saveSetup);
         }
         else
@@ -119,9 +124,16 @@ public class SaveManager : SingletonPersistent<SaveManager>
     }
     #endregion
 
-    public void NotUseSave()
+
+    private void NotUseSave()
     {
         _saveSetup.useSave = false;
+    }
+
+    public void CreateNewEmptyGame()
+    {
+        CreateNewSave();
+        NotUseSave();
     }
 
 }

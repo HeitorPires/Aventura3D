@@ -16,7 +16,7 @@ public class CheckpointBase : MonoBehaviour
 
     void Init()
     {
-        if (SaveManager.Instance._saveSetup.checkpoints.Contains(key))
+        if (SaveManager.Instance._saveSetup.useSave && SaveManager.Instance._saveSetup.checkpoints.Contains(key))
             CheckpointCheck();
     }
 

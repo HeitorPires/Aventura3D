@@ -13,7 +13,7 @@ namespace Cloth
 
         private void Start()
         {
-            if (SaveManager.Instance._saveSetup.currentCloth == (int)type)
+            if (SaveManager.Instance._saveSetup.useSave && SaveManager.Instance._saveSetup.currentCloth == (int)type)
                 ChangeCloth();
 
         }

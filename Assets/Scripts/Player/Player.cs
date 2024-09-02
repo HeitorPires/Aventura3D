@@ -48,7 +48,8 @@ public class Player : Singleton<Player>
         healthBase.onDamage += Damage;
         healthBase.onKill += OnKill;
         CurrentCloth = ClothType.NONE;
-        Invoke(nameof(SetLoadHealth), .1f);
+        if(SaveManager.Instance._saveSetup.useSave)
+            Invoke(nameof(SetLoadHealth), .1f);
     }
 
 
